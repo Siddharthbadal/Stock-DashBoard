@@ -18,7 +18,7 @@ project_2_page=st.Page(
     icon="✔"
 )
 project_3_page=st.Page(
-    page="views/StockinINR.py",
+    page="views/StockInINR.py",
     title="Stock in INR",
     icon="📣"
 )
