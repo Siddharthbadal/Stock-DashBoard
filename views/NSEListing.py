@@ -54,18 +54,21 @@ def fetch_ind_stock_data(ticker, exchange):
 
 st.title("Indian Stock Data")
 ind_ticker = st.sidebar.text_input("Indian Ticker", value="INFY").upper()
-ind_exchange = st.sidebar.text_input("Indian Exchange", value="NSE").upper()
+# ind_exchange = st.sidebar.text_input("Indian Exchange", value="NSE").upper()
 
-price, previous_close_price, revenue_data, recent_news, about_company, market_cap, yoy_revenue_change, df, company_name = fetch_ind_stock_data(ind_ticker, ind_exchange)
+try:
+    price, previous_close_price, revenue_data, recent_news, about_company, market_cap, yoy_revenue_change, df, company_name = fetch_ind_stock_data(ind_ticker, 'NSE')
+    st.subheader(company_name)
 
-st.subheader(company_name)
-st.write("Current Price : ", price)
-st.write("Previous Day Close :", previous_close_price)
-st.write("Revenue :", revenue_data)
-st.write("Market Cap : ", market_cap)
-st.write("Recent News :", recent_news)
-st.write("About Company : ", about_company)
-st.write("YOY Revenue Change : ", yoy_revenue_change)
+    st.write("Current Price : ", price)
+    st.write("Previous Day Close :", previous_close_price)
+    st.write("Revenue :", revenue_data)
+    st.write("Market Cap : ", market_cap)
+    st.write("Recent News :", recent_news)
+    st.write("About Company : ", about_company)
+    st.write("YOY Revenue Change : ", yoy_revenue_change)
 
 
-st.write("Figures : ", df[1:])
+    st.write("Figures : ", df[1:])
+except Exception:
+    st.write("Only Indian Stockes listed in NSE allowed! Enter a correct ticker")

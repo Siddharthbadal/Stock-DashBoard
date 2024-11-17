@@ -9,6 +9,7 @@ if sys.version_info[0] < 3:
 else:
     from io import StringIO
 
+st.title("Nifty Top Performer")
 url = "https://ticker.finology.in/market/index/nse/nifty"
 
 response = requests.get(url)
