@@ -52,45 +52,45 @@ with pricing_data:
 
     st.write("Risk Adjusted Return: ", round(annual_return / ( stddev * 100 ), 2))
 
-# with fundamental_data:
-#     api_key= os.getenv("API_KEY")
-#     fdata = FundamentalData(api_key, output_format= 'pandas')
-#     st.subheader("Balance Sheet")
-#     try:
-#         balance_sheet = fdata.get_balance_sheet_annual(ticker)[0]
-#         bsheet = balance_sheet.T[2:]
-#         bsheet.columns = list(balance_sheet.T.iloc[0])
-#         st.write(bsheet)
-#         st.subheader("Income Statement")
-#         income_statement = fdata.get_income_statement_annual(ticker)[0]
-#         istat = income_statement.T[2:]
-#         istat.columns = list(income_statement.T.iloc[0])
-#         st.write(istat)
-#         st.subheader("Cash Flow")
-#         cash_flow_statement = fdata.get_cash_flow_annual(ticker)[0]
-#         cash_flow = cash_flow_statement.T[2:]
-#         cash_flow.columns = list(cash_flow_statement.T.iloc[0])
-#         st.write(cash_flow)
-#     except Exception:
-#         st.markdown("### Incorrect Ticker or API limit reached. Try Again.")
+with fundamental_data:
+    api_key= os.getenv("API_KEY")
+    fdata = FundamentalData(api_key, output_format= 'pandas')
+    st.subheader("Balance Sheet")
+    try:
+        balance_sheet = fdata.get_balance_sheet_annual(ticker)[0]
+        bsheet = balance_sheet.T[2:]
+        bsheet.columns = list(balance_sheet.T.iloc[0])
+        st.write(bsheet)
+        st.subheader("Income Statement")
+        income_statement = fdata.get_income_statement_annual(ticker)[0]
+        istat = income_statement.T[2:]
+        istat.columns = list(income_statement.T.iloc[0])
+        st.write(istat)
+        st.subheader("Cash Flow")
+        cash_flow_statement = fdata.get_cash_flow_annual(ticker)[0]
+        cash_flow = cash_flow_statement.T[2:]
+        cash_flow.columns = list(cash_flow_statement.T.iloc[0])
+        st.write(cash_flow)
+    except Exception:
+        st.markdown("### Incorrect Ticker or API limit reached. Try Again.")
 
 
 
-# with news_data:
-#     try:
-#         st.header(f"{ticker} in News")
-#         snews = StockNews(ticker, save_news=False)
-#         print(snews)
-#         df_news = snews.read_rss()
-#         for n in range(5):
-#             st.subheader(f"News {n+1}")
-#             st.write(f"Published at : {df_news['published'][n]}")
-#             st.markdown("#### News title")
-#             st.write(df_news['title'][n])
-#             st.markdown("##### News Details")
-#             st.write(df_news['summary'][n])
-#     except Exception:
-#         st.markdown("### Incorrect Ticker or API limit reached. Try Again.")
+with news_data:
+    try:
+        st.header(f"{ticker} in News")
+        snews = StockNews(ticker, save_news=False)
+        print(snews)
+        df_news = snews.read_rss()
+        for n in range(5):
+            st.subheader(f"News {n+1}")
+            st.write(f"Published at : {df_news['published'][n]}")
+            st.markdown("#### News title")
+            st.write(df_news['title'][n])
+            st.markdown("##### News Details")
+            st.write(df_news['summary'][n])
+    except Exception:
+        st.markdown("### Incorrect Ticker or API limit reached. Try Again.")
 
 
 
